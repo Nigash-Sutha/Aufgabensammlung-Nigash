@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 
-namespace Aufgabe_12
+namespace Aufgabe_12_alt
 {
     internal class Program
     {
@@ -21,19 +19,28 @@ namespace Aufgabe_12
 
             string[] zahlen = eingabe.Split(',');
 
-            int[] resultat = new int[zahlen.Length];
-
+            int[] zahlenArray = new int[zahlen.Length];
             for (int i = 0; i < zahlen.Length; i++)
             {
-                resultat[i] = int.Parse(zahlen[i]);
+                zahlenArray[i] = Convert.ToInt32(zahlen[i]);
             }
 
-            Console.WriteLine($"\nResultat:");
-            SumUp(resultat);
+            int[] resultat = sumUp(zahlenArray);
+
+            Console.WriteLine("Resultat Array: " + string.Join(", ", resultat));
+
+            int summe = 0;
+            for (int i = 0; i < zahlenArray.Length; i++)
+            {
+                summe += zahlenArray[i];
+            }
+
+            Console.WriteLine("Gesamtsumme: " + summe);
 
             Console.ReadKey();
         }
-        static int[] SumUp(int[] zahlen)
+
+        static int[] sumUp(int[] zahlen)
         {
             int[] resultat = new int[zahlen.Length];
             int summe = 0;
@@ -42,8 +49,10 @@ namespace Aufgabe_12
             {
                 summe += zahlen[i];
                 resultat[i] = summe;
-                Console.WriteLine("[" + i + "] -> " + resultat[i]);
-            } return resultat;
+            }
+
+            return resultat;
         }
     }
 }
+
